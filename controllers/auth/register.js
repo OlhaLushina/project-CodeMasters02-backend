@@ -4,7 +4,7 @@ const { HttpError, ctrlWrapper } = require('../../helpers');
 
 // Реєстрація
 const register = async (req, res) => {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     const user = await User.findOne({ email });
     
     // Якщо користувач з таким email вже існує в БД
@@ -20,8 +20,8 @@ const register = async (req, res) => {
     const newUser = await User.create({ ...req.body, password: hashPassword });
 
     res.status(201).json({
+        name: newUser.name,
         email: newUser.email,
-        subscription: newUser.subscription,
     });
 }
 

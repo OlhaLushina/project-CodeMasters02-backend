@@ -2,11 +2,11 @@ const { HttpError, ctrlWrapper } = require('../../helpers');
 
 // Перевірка валідності токена
 const getCurrent = async (req, res) => {
-    const { email, subscription } = req.user;
+    const { name, email } = req.user;
 
     res.json({
+        name,
         email,
-        subscription,
     });
 }
 
