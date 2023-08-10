@@ -1,8 +1,14 @@
 const { ctrlWrapper } = require("../../helpers");
-const getAll = require("./getAll");
-const getOwn = require("./getOwn");
+const getAllReviews = require("./getAllReviews");
+const getOwnReview = require("./getOwnReview");
+const addReview = require("./postReview");
+const editReview = require("./editReview");
+const deleteReview = require("./deleteReview");
 
 module.exports = {
-  getAll: ctrlWrapper(getAll),
-  getOwn: ctrlWrapper(getOwn),
+  getAllReviews: ctrlWrapper(getAllReviews),
+  getOwnReview: ctrlWrapper(getOwnReview),
+  addReview: ctrlWrapper(addReview),
+  editReview: ctrlWrapper(editReview),
+  deleteReview: ctrlWrapper(deleteReview),
 };
