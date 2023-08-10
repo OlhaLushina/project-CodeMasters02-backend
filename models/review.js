@@ -21,7 +21,7 @@ const reviewSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-userSchema.post("save", handleMongooseError); // якщо валідація не пройде, то видасть помилку
+reviewSchema.post("save", handleMongooseError); // якщо валідація не пройде, то видасть помилку
 
 //Схема валідації Joi
 const sendReviewSchema = Joi.object({
