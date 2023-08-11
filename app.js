@@ -1,6 +1,10 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+
+const swagger = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 require("dotenv").config(); // підлючаемо змінні оточення із файла .env
 
 const authRouter = require("./routes/api/auth");
@@ -17,6 +21,8 @@ app.use(express.static("public")); // якщо прийшов запит на с
 
 app.use("/api/auth", authRouter);
 app.use("/reviews", reviewsRouter);
+
+app.use('/api/docs', swagger.serve, swagger.setup(swaggerDocument)); // документація swagger
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
