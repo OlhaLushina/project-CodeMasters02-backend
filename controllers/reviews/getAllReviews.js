@@ -8,7 +8,7 @@ const getAll = async (req, res) => {
     .sort({
       createdAt: -1,
     })
-    .populate("owner", "name");
+    .populate("owner", "name"); //avatar
 
   res.json(allReviews);
 };
