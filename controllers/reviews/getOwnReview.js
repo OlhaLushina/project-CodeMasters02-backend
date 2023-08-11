@@ -10,9 +10,7 @@ const getOwn = async (req, res) => {
     throw HttpError(404, "Not found");
   }
 
-  req.json({
-    ownReview,
-  });
+  req.json(ownReview);
 };
 
 module.exports = getOwn;
