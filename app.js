@@ -9,6 +9,7 @@ require("dotenv").config(); // підлючаемо змінні оточенн�
 
 const authRouter = require("./routes/api/auth");
 const reviewsRouter = require("./routes/reviews");
+const tasksRouter = require("./routes/tasks");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static("public")); // якщо прийшов запит на с
 
 app.use("/api/auth", authRouter);
 app.use("/reviews", reviewsRouter);
+app.use("/tasks", tasksRouter);
 
 app.use('/api/docs', swagger.serve, swagger.setup(swaggerDocument)); // документація swagger
 
