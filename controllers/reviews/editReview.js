@@ -1,6 +1,5 @@
 const { HttpError } = require("../../helpers");
 const { Review } = require("../../models/review");
-const { User } = require("../../models/user");
 
 const edit = async (req, res) => {
   const { _id: owner } = req.user;
