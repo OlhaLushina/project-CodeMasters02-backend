@@ -26,7 +26,7 @@ reviewSchema.post("save", handleMongooseError); // якщо валідація �
 
 //Схема валідації Joi
 const sendReviewSchema = Joi.object({
-  rating: Joi.number().required(), //
+  rating: Joi.number().min(1).max(5).required(), //
   text: Joi.string().max(300).required(),
 });
 
