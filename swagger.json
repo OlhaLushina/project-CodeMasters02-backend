@@ -221,6 +221,10 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Review already exists",
+            "content": {}
           }
         }
       },
