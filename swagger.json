@@ -221,10 +221,6 @@
                 }
               }
             }
-          },
-          "409": {
-            "description": "Review already exists",
-            "content": {}
           }
         }
       },
@@ -256,6 +252,10 @@
               }
             }
           },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
           "401": {
             "description": "Unauthorized",
             "content": {}
@@ -269,6 +269,10 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Review already exists",
+            "content": {}
           }
         }
       },
@@ -299,6 +303,10 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
           },
           "401": {
             "description": "Unauthorized",
