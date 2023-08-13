@@ -1,5 +1,5 @@
 const { Review } = require("../../models/review");
-const { ctrlWrapper } = require('../../helpers');
+const { ctrlWrapper } = require("../../helpers");
 
 //Повертає всі відгуки
 
@@ -15,4 +15,4 @@ const getAllReviews = async (req, res) => {
 
 module.exports = {
   getAllReviews: ctrlWrapper(getAllReviews),
-}
+};

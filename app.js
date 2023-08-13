@@ -2,14 +2,15 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-const swagger = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swagger = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 require("dotenv").config(); // підлючаемо змінні оточення із файла .env
 
 const authRouter = require("./routes/api/auth");
 const usersRouter = require("./routes/api/users");
 const reviewsRouter = require("./routes/api/reviews");
+const tasksRouter = require("./routes/api/tasks");
 
 const app = express();
 
@@ -23,8 +24,9 @@ app.use(express.static("public")); // якщо прийшов запит на с
 app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/reviews", reviewsRouter);
+app.use("/tasks", tasksRouter);
 
-app.use('/api/docs', swagger.serve, swagger.setup(swaggerDocument)); // документація swagger
+app.use("/api/docs", swagger.serve, swagger.setup(swaggerDocument)); // документація swagger
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

@@ -12,11 +12,11 @@ const getOwnReview = async (req, res) => {
   }
 
   res.json({
-    "rating": ownReview.rating,
-    "text": ownReview.text
+    rating: ownReview.rating,
+    text: ownReview.text,
   });
 };
 
 module.exports = {
   getOwnReview: ctrlWrapper(getOwnReview),
-}
+};
