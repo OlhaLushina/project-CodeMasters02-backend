@@ -11,9 +11,6 @@ router.post('/register', validateBody(schemas.registerSchema), ctrl.register);
 // Авторизація (signin)
 router.post('/login', validateBody(schemas.loginSchema), ctrl.login);
 
-// Перевірка валідності токена
-router.get('/current', authenticate, ctrl.getCurrent);
-
 // Розлогінитись (logout)
 router.post('/logout', authenticate, ctrl.logout);
 
