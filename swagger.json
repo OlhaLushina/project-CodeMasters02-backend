@@ -12,8 +12,8 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "http://localhost:3000" },
-    { "url": "https://project-codemasters02-backend.onrender.com" }
+    { "url": "https://project-codemasters02-backend.onrender.com" },
+    { "url": "http://localhost:3000" }
   ],
 
   "tags": [
