@@ -10,7 +10,7 @@ require("dotenv").config(); // підлючаемо змінні оточенн�
 const authRouter = require("./routes/api/auth");
 const usersRouter = require("./routes/api/users");
 const reviewsRouter = require("./routes/api/reviews");
-const tasksRouter = require("./routes/tasks");
+const tasksRouter = require("./routes/api/tasks");
 
 const app = express();
 
