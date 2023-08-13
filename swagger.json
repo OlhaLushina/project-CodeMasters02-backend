@@ -463,7 +463,6 @@
 
       "ReviewResponse": {
         "type": "object",
-        "required": ["rating", "text"],
         "properties": {
           "rating": {
             "type": "number",
