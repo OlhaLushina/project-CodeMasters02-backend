@@ -1,16 +1,22 @@
 const { Review } = require("../../models/review");
 const { HttpError, ctrlWrapper } = require("../../helpers");
 
-const getOwn = async (req, res) => {
+const getOwnReview = async (req, res) => {
   const { _id: owner } = req.user;
 
-  const ownReview = Review.findById(owner) || {};
+  // Шукаємо відгук даного користувача
+  const ownReview = await Review.findOne({ owner });
 
   if (!ownReview) {
     throw HttpError(404, "Not found");
   }
 
-  req.json(ownReview);
+  res.json({
+    rating: ownReview.rating,
+    text: ownReview.text,
+  });
 };
 
-module.exports = getOwn;
+module.exports = {
+  getOwnReview: ctrlWrapper(getOwnReview),
+};
