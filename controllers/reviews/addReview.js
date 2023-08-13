@@ -16,8 +16,8 @@ const addReview = async (req, res) => {
   const createdReview = await Review.create({ ...req.body, owner });
 
   res.status(201).json({
-    "rating": createdReview.rating,
-    "text": createdReview.text
+    rating : createdReview.rating,
+    text : createdReview.text
   });
 };
 
