@@ -1,30 +1,47 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "2.0.2",
-    "title": "Swagger test",
-    "description": "Showing off swagger-ui-express",
+    "version": "1.0.0",
+    "title": "Planner",
+    "description": "API documentation for project Planner",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "consumes": ["application/json"],
+  "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3000" }],
+  "servers": [
+    { "url": "http://localhost:3000" },
+    { "url": "https://project-codemasters02-backend.onrender.com" }
+  ],
+
   "tags": [
     {
       "name": "Auth",
       "description": "Authorization endpoints"
+    },
+    {
+      "name": "User",
+      "description": "User endpoints"
+    },
+    {
+      "name": "Reviews",
+      "description": "Reviews endpoints"
+    },
+    {
+      "name": "Tasks",
+      "description": "Tasks endpoints"
     }
   ],
+
   "paths": {
-    "/auth/register": {
+    "/api/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "security": [],
         "requestBody": {
           "description": "Registration's object",
           "required": true,
@@ -52,23 +69,288 @@
             "content": {}
           },
           "409": {
-            "description": "Provided email already exists",
+            "description": "Email already is use",
             "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "parameters": [],
+        "security": [],
+        "requestBody": {
+          "description": "Login's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Email or password invalid",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "204": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/users/current": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get current user info",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/reviews": {
+      "get": {
+        "tags": ["Reviews"],
+        "summary": "Get all reviews",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllReviewsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/reviews/own": {
+      "get": {
+        "tags": ["Reviews"],
+        "summary": "Get own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "post": {
+        "tags": ["Reviews"],
+        "summary": "Add own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Review's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "patch": {
+        "tags": ["Reviews"],
+        "summary": "Update own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Review's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorNotFoundResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "delete": {
+        "tags": ["Reviews"],
+        "summary": "Delete own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorNotFoundResponse"
+                }
+              }
+            }
           }
         }
       }
     }
   },
+
   "components": {
     "schemas": {
       "RegistrationRequest": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": ["name", "email", "password"],
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "User"
+          },
           "email": {
             "type": "string",
             "description": "User's email",
-            "format": "email"
+            "example": "user@example.com"
           },
           "password": {
             "type": "string",
@@ -78,26 +360,174 @@
         }
       },
       "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "User"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "example": "user@example.com"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZDRjOWYxOTUzM2RlNmExMzdkMzU0MiIsImlhdCI6MTY5MTc1MjQ3MiwiZXhwIjoxNjkxODM1MjcyfQ.oQR34DYaWTokYp8swtaQpa0ZojI8x0LqAqokKHgN0cw"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "example": "user@example.com"
+              }
+            }
+          }
+        }
+      },
+      "CurrentUserResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "User"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "example": "user@example.com"
+          }
+        }
+      },
+
+      "ReviewRequest": {
+        "type": "object",
+        "required": ["rating", "text"],
+        "properties": {
+          "rating": {
+            "type": "number",
+            "description": "Review's rating",
+            "example": "5"
+          },
+          "text": {
+            "type": "string",
+            "description": "Review's text",
+            "example": "Excellent"
+          }
+        }
+      },
+
+      "ReviewResponse": {
+        "type": "object",
+        "required": ["rating", "text"],
+        "properties": {
+          "rating": {
+            "type": "number",
+            "description": "Review's rating",
+            "example": "5"
+          },
+          "text": {
+            "type": "string",
+            "description": "Review's text",
+            "example": "Excellent"
+          }
+        }
+      },
+
+      "AllReviewsResponse": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "email": {
+            "_id": {
               "type": "string",
-              "description": "User's email",
-              "format": "email"
+              "description": "Review's id",
+              "example": "64d825a42801c1bed5142c77"
             },
-            "userId": {
+            "rating": {
               "type": "number",
-              "description": "User's id",
-              "example": "32143232436545474"
+              "description": "Review's rating",
+              "example": "5"
+            },
+            "text": {
+              "type": "string",
+              "description": "Review's text",
+              "example": "Excellent"
+            },
+            "owner": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Users's id",
+                  "example": "64d4c9f19533de6a137d3542"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Users's name",
+                  "example": "User"
+                },
+                "avatar": {
+                  "type": "string",
+                  "description": "User's avatar",
+                  "example": ""
+                }
+              }
+            },
+            "createdAt": {
+              "type": "string",
+              "description": "Review's created",
+              "example": "2023-08-13T00:36:52.708Z"
+            },
+            "updatedAt": {
+              "type": "string",
+              "description": "Review's updated",
+              "example": "2023-08-13T00:36:52.708Z"
             }
           }
-        },
-        "example": [
-          { "email": "1@gmail.com", "userId": "1" },
-          { "email": "2@gmail.com", "userId": "2" }
-        ]
+        }
+      },
+
+      "ErrorNotFoundResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "Error status code",
+            "example": "404"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Not found"
+          }
+        }
       }
     },
     "securitySchemes": {

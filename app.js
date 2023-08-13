@@ -8,7 +8,8 @@ const swaggerDocument = require('./swagger.json');
 require("dotenv").config(); // підлючаемо змінні оточення із файла .env
 
 const authRouter = require("./routes/api/auth");
-const reviewsRouter = require("./routes/reviews");
+const usersRouter = require("./routes/api/users");
+const reviewsRouter = require("./routes/api/reviews");
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use(express.json());
 app.use(express.static("public")); // якщо прийшов запит на статичний файл, то його треба шукати у папці "public"
 
 app.use("/api/auth", authRouter);
-app.use("/reviews", reviewsRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/reviews", reviewsRouter);
 
 app.use('/api/docs', swagger.serve, swagger.setup(swaggerDocument)); // документація swagger
 

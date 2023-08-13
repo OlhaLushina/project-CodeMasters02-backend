@@ -1,6 +1,6 @@
 const { HttpError, ctrlWrapper } = require('../../helpers');
 
-// Перевірка валідності токена
+// Отримання даних про користувача
 const getCurrent = async (req, res) => {
     const { name, email } = req.user;
 
