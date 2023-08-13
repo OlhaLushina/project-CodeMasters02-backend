@@ -12,6 +12,7 @@ const reviewSchema = new Schema(
     text: {
       type: String,
       required: [true, "Review text is required"],
+      maxlength: 254,
     },
     owner: {
       type: Schema.Types.ObjectId,
@@ -26,7 +27,7 @@ reviewSchema.post("save", handleMongooseError); // якщо валідація �
 //Схема валідації Joi
 const sendReviewSchema = Joi.object({
   rating: Joi.number().required(), //
-  text: Joi.string().max(300).required(),
+  text: Joi.string().max(254).required(),
 });
 
 // Створюємо модель

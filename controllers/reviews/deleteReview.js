@@ -1,5 +1,5 @@
-const { HttpError } = require("../../helpers");
 const { Review } = require("../../models/review");
+const { HttpError, ctrlWrapper } = require('../../helpers');
 
 const deleteReview = async (req, res) => {
   const { _id: owner } = req.user;
@@ -12,4 +12,6 @@ const deleteReview = async (req, res) => {
   res.json({ message: "delete success" });
 };
 
-module.exports = deleteReview;
+module.exports = {
+  deleteReview: ctrlWrapper(deleteReview)
+}

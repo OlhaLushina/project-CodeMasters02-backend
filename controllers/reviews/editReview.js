@@ -1,8 +1,7 @@
-const { HttpError } = require("../../helpers");
 const { Review } = require("../../models/review");
-const { User } = require("../../models/user");
+const { HttpError, ctrlWrapper } = require('../../helpers');
 
-const edit = async (req, res) => {
+const editReview = async (req, res) => {
   const { _id: owner } = req.user;
 
   const editedReview = await Review.findOneAndUpdate({ owner }, req.body, { new: true });
@@ -11,7 +10,12 @@ const edit = async (req, res) => {
     throw HttpError(404, "Not found");
   }
 
-  res.json({ editedReview });
+  res.json({ 
+    "rating": editedReview.rating,
+    "text": editedReview.text
+   });
 };
 
-module.exports = edit;
+module.exports = {
+  editReview: ctrlWrapper(editReview),
+}
