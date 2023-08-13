@@ -380,15 +380,25 @@
       "RegistrationResponse": {
         "type": "object",
         "properties": {
-          "name": {
+          "token": {
             "type": "string",
-            "description": "User's name",
-            "example": "User"
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZDRjOWYxOTUzM2RlNmExMzdkMzU0MiIsImlhdCI6MTY5MTc1MjQ3MiwiZXhwIjoxNjkxODM1MjcyfQ.oQR34DYaWTokYp8swtaQpa0ZojI8x0LqAqokKHgN0cw"
           },
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "example": "user@example.com"
+          "user": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "User"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "example": "user@example.com"
+              }
+            }
           }
         }
       },
