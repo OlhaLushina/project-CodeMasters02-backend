@@ -68,6 +68,10 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
+          "404": {
+            "description": "Not found registered user",
+            "content": {}
+          },
           "409": {
             "description": "Email already is use",
             "content": {}

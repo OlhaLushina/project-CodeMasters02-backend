@@ -26,7 +26,7 @@ const register = async (req, res) => {
     const createdUser = await User.findOne({ email });
 
     if (!createdUser) {
-        throw HttpError(404, "Not found created user");
+        throw HttpError(404, "Not found registered user");
     }
 
     // Формуємо payload для токена
