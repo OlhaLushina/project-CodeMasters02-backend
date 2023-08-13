@@ -1,21 +1,23 @@
-const { Review } = require("../../models/review");
-const { ctrlWrapper } = require('../../helpers');
+const { Review } = require('../../models/review');
+const { HttpError, ctrlWrapper } = require('../../helpers');
 
 const addReview = async (req, res) => {
   const { _id: owner } = req.user;
 
-  const ownReview = await Review.findById(owner) || {};
+  // Шукаємо відгук даного користувача
+  const ownReview = await Review.findOne({ owner });
 
   // Якшо уже створений відгук, помилка
+  // Статус помилки 409 видасть і handleMongooseError, але це для тексту повідомлення
   if (ownReview) {
     throw HttpError(409, "Review already exists");
   }
 
-  const review = await Review.create({ ...req.body, owner });
+  const createdReview = await Review.create({ ...req.body, owner });
 
   res.status(201).json({
-    "rating": review.rating,
-    "text": review.text
+    "rating": createdReview.rating,
+    "text": createdReview.text
   });
 };
 
