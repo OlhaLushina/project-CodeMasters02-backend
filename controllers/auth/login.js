@@ -36,7 +36,12 @@ const login = async (req, res) => {
     res.status(200).json({
         token,
         user: {
+            name: user.name,
             email: user.email,
+            dateBirthday: user.dateBirthday,
+            phone: user.phone,
+            skype: user.skype,
+            avatar: user.avatar,
         }
     });
 }

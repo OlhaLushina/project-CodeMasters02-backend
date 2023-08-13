@@ -11,6 +11,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Name is required'],
     maxlength: 16,
+    default: "",
   },
   email: {
     type: String,

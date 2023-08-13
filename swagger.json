@@ -433,10 +433,35 @@
           "user": {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "User"
+              },
               "email": {
                 "type": "string",
                 "description": "User's email",
                 "example": "user@example.com"
+              },
+              "dateBirthday": {
+                "type": "date",
+                "description": "User's birthday",
+                "example": "1998-02-01"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's phone",
+                "example": "+3805067453444"
+              },
+              "skype": {
+                "type": "string",
+                "description": "User's skype",
+                "example": "skype"
+              },
+              "avatar": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "1.jpg"
               }
             }
           }
