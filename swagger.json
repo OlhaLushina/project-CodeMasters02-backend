@@ -490,12 +490,12 @@
               "birthday": {
                 "type": "date",
                 "description": "User's birthday",
-                "example": "1998-02-01"
+                "example": "02/01/1998"
               },
               "phone": {
                 "type": "string",
                 "description": "User's phone",
-                "example": "+3805067453444"
+                "example": "+38 (099) 012-9226"
               },
               "skype": {
                 "type": "string",
@@ -544,12 +544,12 @@
           "birthday": {
             "type": "date",
             "description": "User's birthday",
-            "example": "1998-02-01"
+            "example": "02/01/1998"
           },
           "phone": {
             "type": "string",
             "description": "User's phone",
-            "example": "+3805067453444"
+            "example": "+38 (099) 012-9226"
           },
           "skype": {
             "type": "string",
@@ -580,12 +580,12 @@
           "birthday": {
             "type": "date",
             "description": "User's birthday",
-            "example": "1998-02-01"
+            "example": "02/01/1998"
           },
           "phone": {
             "type": "string",
             "description": "User's phone",
-            "example": "+3805067453444"
+            "example": "+38 (099) 012-9226"
           },
           "skype": {
             "type": "string",
