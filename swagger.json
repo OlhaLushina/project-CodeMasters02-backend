@@ -164,6 +164,39 @@
       }
     },
 
+    "/api/users/current": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Edit user info",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found user's id",
+            "content": {}
+          },
+          "409": {
+            "description": "Email already is use",
+            "content": {}
+          }
+        }
+      }
+    },
+
     "/api/reviews": {
       "get": {
         "tags": ["Reviews"],
@@ -443,7 +476,7 @@
                 "description": "User's email",
                 "example": "user@example.com"
               },
-              "dateBirthday": {
+              "birthday": {
                 "type": "date",
                 "description": "User's birthday",
                 "example": "1998-02-01"
@@ -479,6 +512,79 @@
             "type": "string",
             "description": "User's email",
             "example": "user@example.com"
+          }
+        }
+      },
+
+      "EditUserRequest": {
+        "type": "object",
+        "required": ["name", "email"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "User"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "example": "user@example.com"
+          },
+          "birthday": {
+            "type": "date",
+            "description": "User's birthday",
+            "example": "1998-02-01"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+3805067453444"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's skype",
+            "example": "skype"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "1.jpg"
+          }
+        }
+      },
+
+      "EditUserResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "User"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "example": "user@example.com"
+          },
+          "birthday": {
+            "type": "date",
+            "description": "User's birthday",
+            "example": "1998-02-01"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+3805067453444"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's skype",
+            "example": "skype"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "1.jpg"
           }
         }
       },

@@ -3,7 +3,10 @@ const { handleMongooseError } = require('../helpers');
 const Joi = require('joi');
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // регуляйрний вираз для email
-const phoneRegexp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/; 
+
+const phoneRegexp = /^\+38 \(\d{3}\) \d{3}-\d{4}$/; // регуляйрний вираз для телефона
+
+const birthdayRegexp =  /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/((19|20)\d\d)$/; // регуляйрний вираз для дати народження
 
 // Схема валідації mongoose (даних, які хочемо зберегти)
 const userSchema = new Schema({
@@ -26,23 +29,25 @@ const userSchema = new Schema({
     maxlength: 254,
     required: [true, 'Password is required'],
   },
-  dateBirthday: {
-    type: Date,
+  birthday: {
+    type: String,
+    maxlength: 10,
   },
   phone: {
     type: String,
-    maxlength: 13,
+    maxlength: 18,
     match: phoneRegexp,
   },
   skype: {
     type: String,
-    maxlength: 16,
+    maxlength: 254,
   },
   token: {
     type: String,
   },
   avatar: {
     type: String,
+    maxlength: 254,
   },
 }, { versionKey: false, timestamps: true }
     // versionKey: false - щоб не строрювалось поле "__v" з версією документа при додаванні данних
@@ -64,10 +69,21 @@ const loginSchema = Joi.object({
     password: Joi.string().min(6).max(254).required(),
 });
 
+// Схема валідації Joi для редагування користувача (даних, що прийшли)
+const editSchema = Joi.object({
+    name: Joi.string().max(16).required(),
+    email: Joi.string().max(254).pattern(emailRegexp).required(),
+    birthday: Joi.string().max(10).pattern(birthdayRegexp),
+    phone: Joi.string().max(18).pattern(phoneRegexp),
+    skype: Joi.string().max(254),
+    avatar: Joi.string().max(254),
+});
+
 // Об'єднуємо схеми Joi
 const schemas = {
   registerSchema,
   loginSchema,
+  editSchema,
 }
 
 // Створюємо модель
