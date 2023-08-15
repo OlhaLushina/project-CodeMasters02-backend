@@ -164,12 +164,23 @@
       }
     },
 
-    "/api/users/current": {
+    "/api/users": {
       "patch": {
         "tags": ["User"],
         "summary": "Edit user info",
         "parameters": [],
         "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "User's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditUserRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful operation",
