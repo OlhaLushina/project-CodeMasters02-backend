@@ -75,6 +75,10 @@
           "409": {
             "description": "Email already is use",
             "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -115,6 +119,10 @@
           "401": {
             "description": "Email or password invalid",
             "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -133,6 +141,10 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -158,6 +170,10 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -203,6 +219,10 @@
           "409": {
             "description": "Email already is use",
             "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -234,6 +254,10 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -269,6 +293,10 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       },
@@ -321,6 +349,10 @@
           "409": {
             "description": "Review already exists",
             "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       },
@@ -369,6 +401,10 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       },
@@ -396,6 +432,10 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
