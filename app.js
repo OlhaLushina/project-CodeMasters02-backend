@@ -24,7 +24,7 @@ app.use(express.static("public")); // якщо прийшов запит на с
 app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/reviews", reviewsRouter);
-app.use("/tasks", tasksRouter);
+app.use("/api/tasks", tasksRouter);
 
 app.use("/api/docs", swagger.serve, swagger.setup(swaggerDocument)); // документація swagger
 
