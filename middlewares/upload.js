@@ -1,20 +1,33 @@
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
-const path = require('path');
 
-const tmpDir = path.join(__dirname, "../", "tmp"); // створюємо шлях до тимчасової папки "tmp"
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
 
-const multerConfig = multer.diskStorage({
-    destination: tmpDir,
-    filename: async (req, file, cb) => {      
-        cb(null, file.originalname);
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: async (req, file) => {
+    // Determine the folder based on file properties or request data
+    let folder;
+    if (file.fieldname === 'avatar') {
+      folder = 'avatars';
+    } else if (file.fieldname === 'documents') {
+      folder = 'documents';
+    } else {
+      folder = 'misc';
     }
+    return {
+      folder: folder,
+      allowed_formats: ['jpg', 'jpeg', 'png'], // Adjust the allowed formats as needed
+      public_id: file.originalname, // Use original filename as the public ID
+    };
+  },
 });
 
-
-// middleware upload, яка збереже файл в папку "tmp", інформацію про нього передасть в req.file, а текстові дані в req.body
-const upload =  multer({
-   storage: multerConfig
-});
-
+const upload = multer({ storage });
 
 module.exports = upload;
