@@ -681,7 +681,7 @@
               "avatar": {
                 "type": "string",
                 "description": "User's avatar",
-                "example": "1.jpg"
+                "example": "https://res.cloudinary.com/doe2xjnlr/image/upload/v1692301439/avatars/IMG_0041.JPG.jpg"
               }
             }
           }
@@ -735,7 +735,7 @@
           "avatar": {
             "type": "string",
             "description": "User's avatar",
-            "example": "1.jpg"
+            "example": "https://res.cloudinary.com/doe2xjnlr/image/upload/v1692301439/avatars/IMG_0041.JPG.jpg"
           }
         }
       },
