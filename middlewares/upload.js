@@ -20,10 +20,19 @@ const storage = new CloudinaryStorage({
     } else {
       folder = 'misc';
     }
+      
+    // Define the transformation options for resizing the image
+    const transformation = {
+      width: 250, // New width
+      height: 250, // New height
+      crop: 'fill', // Crop the image to fit the specified dimensions
+    };
+      
     return {
       folder: folder,
       allowed_formats: ['jpg', 'jpeg', 'png'], // Adjust the allowed formats as needed
       public_id: file.originalname, // Use original filename as the public ID
+      transformation: [transformation], // Apply the transformation to the uploaded image
     };
   },
 });
