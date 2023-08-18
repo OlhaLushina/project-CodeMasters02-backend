@@ -9,12 +9,12 @@ const authenticate = async (req, res, next) => {
 
     // Якщо немає токену
     if (!token) {
-        next(HttpError(401)); // помилка 401 перериває функцію, і далі вона не піде
+        next(HttpError(4011)); // помилка 401 перериває функцію, і далі вона не піде
     }
 
     // Якщо в заголовку Authorization перше слово не Bearer
     if (bearer !== "Bearer") {
-        next(HttpError(401)); 
+        next(HttpError(4012)); 
     }
 
     try {
@@ -23,13 +23,13 @@ const authenticate = async (req, res, next) => {
 
         // Якщо такого користувача нема в БД або у нього немає токену або його токен не співпадає з тим, який прислали
         if (!user || !user.token || user.token !== token) {
-            next(HttpError(401));
+            next(HttpError(4013));
         }
 
         req.user = user;  // додаємо користуваа, якого знайшли (хто відправив токен)
         next(); // якщо токен валідний і такий користувач є в БД
     } catch { // якщо токен не валідний
-        next(HttpError(401));
+        next(HttpError(4014));
     }
 }
 
