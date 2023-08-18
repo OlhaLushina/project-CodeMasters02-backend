@@ -32,22 +32,27 @@ const userSchema = new Schema({
   birthday: {
     type: String,
     maxlength: 10,
+    default: "",
   },
   phone: {
     type: String,
     maxlength: 18,
     match: phoneRegexp,
+    default: "",
   },
   skype: {
     type: String,
     maxlength: 254,
+    default: "",
   },
   token: {
     type: String,
+    default: "",
   },
   avatar: {
     type: String,
     maxlength: 254,
+    default: "",
   },
 }, { versionKey: false, timestamps: true }
     // versionKey: false - щоб не строрювалось поле "__v" з версією документа при додаванні данних
@@ -73,10 +78,10 @@ const loginSchema = Joi.object({
 const editSchema = Joi.object({
     name: Joi.string().max(16).required(),
     email: Joi.string().max(254).pattern(emailRegexp).required(),
-    birthday: Joi.string().max(10).pattern(birthdayRegexp),
-    phone: Joi.string().max(18).pattern(phoneRegexp),
-    skype: Joi.string().max(254),
-    avatar: Joi.string().max(254),
+    birthday: Joi.string().max(10).pattern(birthdayRegexp).allow(""),
+    phone: Joi.string().max(18).pattern(phoneRegexp).allow(""),
+    skype: Joi.string().max(254).allow(""),
+    avatar: Joi.string().max(254).allow(""),
 });
 
 // Об'єднуємо схеми Joi
