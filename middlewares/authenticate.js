@@ -9,12 +9,12 @@ const authenticate = async (req, res, next) => {
 
     // Якщо немає токену
     if (!token) {
-        next(HttpError(401, 'A1')); // помилка 401 перериває функцію, і далі вона не піде
+        next(HttpError(402, 'A1')); // помилка 401 перериває функцію, і далі вона не піде
     }
 
     // Якщо в заголовку Authorization перше слово не Bearer
     if (bearer !== "Bearer") {
-        next(HttpError(401, 'A2')); 
+        next(HttpError(403, 'A2')); 
     }
 
     try {
