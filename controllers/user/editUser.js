@@ -6,7 +6,7 @@ const { User } = require('../../models/user');
 const editUser = async (req, res) => {
     const { _id } = req.user;
     const { email: newEmail } = req.body;
-    const avatar = req.file.path;
+    const avatar = (req.file) ? req.file.path : "";
 
     // Шукаємо іншого користувача з даним e-mail, щоб при зміні e-mail не було повторів в БД
     const user = await User.findOne({ _id: { $ne: _id }, email: newEmail  });

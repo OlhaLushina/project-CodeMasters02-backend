@@ -10,7 +10,13 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: async (req, file) => {
+    params: async (req, file) => {
+    if (!file) {
+        // Handle case when no file is uploaded
+        return {}; // Return an empty object or set default values
+    }
+        
+
     // Determine the folder based on file properties or request data
     let folder;
     if (file.fieldname === 'avatar') {
