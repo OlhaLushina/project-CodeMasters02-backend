@@ -23,13 +23,13 @@ const authenticate = async (req, res, next) => {
 
         // Якщо такого користувача нема в БД або у нього немає токену або його токен не співпадає з тим, який прислали
         if (!user || !user.token || user.token !== token) {
-            next(HttpError(401, 'A3'));
+            next(HttpError(409, 'A3'));
         }
 
         req.user = user;  // додаємо користуваа, якого знайшли (хто відправив токен)
         next(); // якщо токен валідний і такий користувач є в БД
     } catch { // якщо токен не валідний
-        next(HttpError(401, 'A4'));
+        next(HttpError(408, 'A4'));
     }
 }
 
