@@ -6,7 +6,7 @@ const ctrl = require("../../controllers/tasks");
 const router = express.Router();
 
 // Повертає всі завдання за місяць
-router.get("/", /*authenticate,*/ ctrl.getAllTasksOfMonth);
+router.get("/", authenticate, ctrl.getAllTasksOfMonth);
 
 // Додати завдання
 router.post("/", authenticate, validateBody(addTaskSchema), ctrl.addTask);
