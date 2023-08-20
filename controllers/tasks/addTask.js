@@ -1,4 +1,4 @@
-const { isLaterTime, HttpError } = require("../../helpers");
+const { isLaterTime, HttpError, ctrlWrapper } = require("../../helpers");
 const { Task } = require("../../models/task");
 
 const addTask = async (req, res) => {
@@ -14,4 +14,4 @@ const addTask = async (req, res) => {
   res.status(201).json(newTask);
 };
 
-module.exports = addTask;
+module.exports = { addTask: ctrlWrapper(addTask) };

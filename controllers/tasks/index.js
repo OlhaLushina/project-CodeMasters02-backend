@@ -1,13 +1,15 @@
 const { ctrlWrapper } = require("../../helpers");
 
-const getAllTasksOfMonth = require("./getAllTasksOfMonth");
-const addTask = require("./addTask");
-const editTask = require("./editTask");
-const deleteTask = require("./deleteTask");
+const { getAllTasksOfMonth } = require("./getAllTasksOfMonth");
+const { addTask } = require("./addTask");
+const { editTask } = require("./editTask");
+const { deleteTask } = require("./deleteTask");
+const { getStatistics } = require("./getStatistics");
 
 module.exports = {
-  getAllTasksOfMonth: ctrlWrapper(getAllTasksOfMonth),
-  addTask: ctrlWrapper(addTask),
-  editTask: ctrlWrapper(editTask),
-  deleteTask: ctrlWrapper(deleteTask),
+  getAllTasksOfMonth,
+  addTask,
+  editTask,
+  deleteTask,
+  getStatistics,
 };

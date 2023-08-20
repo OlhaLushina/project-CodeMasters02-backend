@@ -1,5 +1,5 @@
 const { Task } = require("../../models/task");
-const { isLaterTime, HttpError } = require("../../helpers");
+const { isLaterTime, HttpError, ctrlWrapper } = require("../../helpers");
 
 const editTask = async (req, res) => {
   const { id } = req.params;
@@ -19,4 +19,6 @@ const editTask = async (req, res) => {
   res.json(editedTask);
 };
 
-module.exports = editTask;
+module.exports = {
+  editTask: ctrlWrapper(editTask),
+};

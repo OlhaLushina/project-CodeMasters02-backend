@@ -1,3 +1,4 @@
+const { ctrlWrapper } = require("../../helpers");
 const { Task } = require("../../models/task");
 
 const getAllTasksOfMonth = async (req, res) => {
@@ -9,4 +10,6 @@ const getAllTasksOfMonth = async (req, res) => {
   res.json(tasksList);
 };
 
-module.exports = getAllTasksOfMonth;
+module.exports = {
+  getAllTasksOfMonth: ctrlWrapper(getAllTasksOfMonth),
+};

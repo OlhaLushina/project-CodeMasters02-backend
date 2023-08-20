@@ -11,8 +11,13 @@ router.get("/", authenticate, ctrl.getAllTasksOfMonth);
 // Додати завдання
 router.post("/", authenticate, validateBody(addTaskSchema), ctrl.addTask);
 
+// редагувати завдання
 router.patch("/:id", authenticate, validateBody(editTaskSchema), ctrl.editTask);
 
+// Видалити завдання
 router.delete("/:id", authenticate, ctrl.deleteTask);
+
+// Отримати статистику по завданнях
+router.get("/statistics", authenticate, ctrl.getStatistics);
 
 module.exports = router;

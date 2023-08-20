@@ -1,4 +1,4 @@
-const { HttpError } = require("../../helpers");
+const { HttpError, ctrlWrapper } = require("../../helpers");
 const { Task } = require("../../models/task");
 
 const deleteTask = async (req, res) => {
@@ -13,4 +13,6 @@ const deleteTask = async (req, res) => {
   res.json({ message: "delete success" });
 };
 
-module.exports = deleteTask;
+module.exports = {
+  deleteTask: ctrlWrapper(deleteTask),
+};
