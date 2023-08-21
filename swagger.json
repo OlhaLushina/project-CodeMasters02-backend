@@ -445,8 +445,27 @@
       "get": {
         "tags": ["Tasks"],
         "summary": "Get all tasks of period",
-        "parameters": [],
-        "security": [],
+        "parameters": [
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "description": "start of the task",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "description": "end of the task",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -458,6 +477,10 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
           "500": {
             "description": "Server error",
             "content": {}
@@ -468,20 +491,35 @@
         "tags": ["Tasks"],
         "summary": "Add a task",
         "parameters": [],
-        "security": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Task's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddTaskResponse"
+                  "$ref": "#/components/schemas/TaskResponse"
                 }
               }
             }
           },
           "400": {
             "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
             "content": {}
           },
           "500": {
@@ -958,26 +996,6 @@
               "enum": ["to-do", "in-progress", "done"]
             },
             "example": "in-progress"
-          },
-          "owner": {
-            "type": "string",
-            "description": "Task's owner",
-            "example": "649ab7f56f47f612c3a161765"
-          },
-          "_id": {
-            "type": "string",
-            "description": "Task's id",
-            "example": "649ab7f56f47f612c3a16173"
-          },
-          "createdAt": {
-            "type": "date",
-            "description": "Date of created the task",
-            "example": "2023-06-28T09:59:14.548Z"
-          },
-          "updatedAt": {
-            "type": "date",
-            "description": "Date of updated the task",
-            "example": "2023-06-28T09:59:14.548Z"
           }
         }
       },
