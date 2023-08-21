@@ -28,22 +28,35 @@ const getStatistics = async (req, res) => {
   const tasksInProgressByDay = tasksByDay.filter((task) => task.category === "in-progress");
   const tasksDoneByDay = tasksByDay.filter((task) => task.category === "done");
 
+  const tasksToDoByDayInPercent = (tasksToDoByDay.length / tasksByDay.length) * 100;
+  const tasksInProgressByDayInPercent = (tasksInProgressByDay.length / tasksByDay.length) * 100;
+  const tasksDoneByDayInPercent = (tasksDoneByDay.length / tasksByDay.length) * 100;
+
   const tasksToDoByMonth = tasksByMonth.filter((task) => task.category === "to-do");
   const tasksInProgressByMonth = tasksByMonth.filter((task) => task.category === "in-progress");
   const tasksDoneByMonth = tasksByMonth.filter((task) => task.category === "done");
 
-  res.json({
-    month: {
-      toDo: tasksToDoByMonth.length,
-      inProgress: tasksInProgressByMonth.length,
-      done: tasksDoneByMonth.length,
+  const tasksToDoByMonthInPercent = (tasksToDoByMonth.length / tasksByMonth.length) * 100;
+  const tasksInProgressByMonthInPercent = (tasksInProgressByMonth.length / tasksByMonth.length) * 100;
+  const tasksDoneByMonthInPercent = (tasksDoneByMonth.length / tasksByMonth.length) * 100;
+
+  res.json([
+    {
+      name: "To Do",
+      day: Math.round(tasksToDoByDayInPercent),
+      month: Math.round(tasksToDoByMonthInPercent),
     },
-    day: {
-      toDo: tasksToDoByDay.length,
-      inProgress: tasksInProgressByDay.length,
-      done: tasksDoneByDay.length,
+    {
+      name: "In Progress",
+      day: Math.round(tasksInProgressByDayInPercent),
+      month: Math.round(tasksInProgressByMonthInPercent),
     },
-  });
+    {
+      name: "Done",
+      day: Math.round(tasksDoneByDayInPercent),
+      month: Math.round(tasksDoneByMonthInPercent),
+    },
+  ]);
 };
 
 module.exports = {
