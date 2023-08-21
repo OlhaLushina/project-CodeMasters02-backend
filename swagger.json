@@ -1207,49 +1207,47 @@
       },
 
       "StatisticsResponse": {
-        "type": "object",
-        "properties": {
-          "day": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
             "type": "object",
             "properties": {
-              "toDo": {
-                "type": "integer",
-                "description": "To-do for day",
-                "example": "30"
+              "name": {
+                "type": "string",
+                "description": "Name of category",
+                "example": "To Do"
               },
-              "inProgress": {
-                "type": "integer",
-                "description": "In progress for day",
+              "day": {
+                "type": "number",
+                "description": "Percent of the tasks this category for a day",
                 "example": "35"
               },
-              "done": {
-                "type": "integer",
-                "description": "Done for day",
+              "month": {
+                "type": "number",
+                "description": "Percent of the tasks this category for a month",
                 "example": "17"
               }
             }
-          },
-          "month": {
-            "type": "object",
-            "properties": {
-              "toDo": {
-                "type": "integer",
-                "description": "To-do for month",
-                "example": "60"
-              },
-              "inProgress": {
-                "type": "integer",
-                "description": "In progress for month",
-                "example": "45"
-              },
-              "done": {
-                "type": "integer",
-                "description": "Done for month",
-                "example": "34"
-              }
-            }
           }
-        }
+        },
+        "example": [
+          {
+            "name": "To Do",
+            "day": 50,
+            "month": 75
+          },
+          {
+            "name": "In Progress",
+            "day": 30,
+            "month": 60
+          },
+          {
+            "name": "Done",
+            "day": 20,
+            "month": 40
+          }
+        ]
       },
 
       "ErrorNotFoundResponse": {
