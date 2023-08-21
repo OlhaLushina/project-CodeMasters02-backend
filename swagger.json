@@ -190,7 +190,7 @@
           "description": "User's object",
           "required": true,
           "content": {
-            "multipart/form-data:": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/EditUserRequest"
               }
