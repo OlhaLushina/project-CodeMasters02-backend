@@ -18,6 +18,6 @@ router.patch("/:id", authenticate, validateBody(editTaskSchema), ctrl.editTask);
 router.delete("/:id", authenticate, ctrl.deleteTask);
 
 // Отримати статистику по завданнях
-router.get("/statistics", authenticate, ctrl.getStatistics);
+router.post("/statistics", authenticate, ctrl.getStatistics);
 
 module.exports = router;
