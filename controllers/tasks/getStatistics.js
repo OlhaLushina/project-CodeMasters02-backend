@@ -3,7 +3,8 @@ const { Task } = require("../../models/task");
 
 const getStatistics = async (req, res) => {
   const { _id: owner } = req.user;
-  const { date } = req.body;
+  const { date } = req.query;
+  console.log(date);
 
   const dayStartHours = new Date(date);
   dayStartHours.setHours(0, 0, 0, 0);
