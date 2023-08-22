@@ -17,7 +17,10 @@ const editUser = async (req, res) => {
         throw HttpError(409, "Email already is use");
     }
 
-    const editedUser = await User.findByIdAndUpdate(_id, { ...req.body, avatar }, { new: true });
+    // Нові дані користувача
+    const newDataUser = (avatar) ? { ...req.body, avatar } : req.body;
+
+    const editedUser = await User.findByIdAndUpdate(_id, newDataUser, { new: true });
 
     if (!editedUser) {
       throw HttpError(404, "Not found user's id");
