@@ -39,7 +39,7 @@ const userSchema = new Schema({
   },
   phone: {
     type: String,
-    maxlength: 18,
+    maxlength: 24,
     default: "",
   },
   skype: {
@@ -81,7 +81,7 @@ const editSchema = Joi.object({
     name: Joi.string().max(16).required(),
     email: Joi.string().max(254).pattern(emailRegexp).required(),
     birthday: Joi.string().max(10).pattern(birthdayRegexp).allow(""),
-    phone: Joi.string().max(18).allow(""),
+    phone: Joi.string().max(24).allow(""),
     skype: Joi.string().max(254).allow(""),
     avatar: Joi.string().max(254).allow(""),
 });
