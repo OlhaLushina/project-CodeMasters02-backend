@@ -670,24 +670,7 @@
                   "$ref": "#/components/schemas/StatisticsResponse"
                 }
               }
-            },
-            "example": [
-              {
-                "name": "To Do",
-                "day": 50,
-                "month": 75
-              },
-              {
-                "name": "In Progress",
-                "day": 30,
-                "month": 60
-              },
-              {
-                "name": "Done",
-                "day": 20,
-                "month": 40
-              }
-            ]
+            }
           },
           "401": {
             "description": "Unauthorized",
@@ -1247,7 +1230,24 @@
               }
             }
           }
-        }
+        },
+        "example": [
+          {
+            "name": "To Do",
+            "day": 50,
+            "month": 75
+          },
+          {
+            "name": "In Progress",
+            "day": 30,
+            "month": 60
+          },
+          {
+            "name": "Done",
+            "day": 20,
+            "month": 40
+          }
+        ]
       },
 
       "ErrorNotFoundResponse": {
