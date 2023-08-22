@@ -43,17 +43,17 @@ const getStatistics = async (req, res) => {
   res.json([
     {
       name: "To Do",
-      day: Math.round(tasksToDoByDayInPercent),
+      day: Math.round(tasksToDoByDayInPercent) || 0,
       month: Math.round(tasksToDoByMonthInPercent),
     },
     {
       name: "In Progress",
-      day: Math.round(tasksInProgressByDayInPercent),
+      day: Math.round(tasksInProgressByDayInPercent) || 0,
       month: Math.round(tasksInProgressByMonthInPercent),
     },
     {
       name: "Done",
-      day: Math.round(tasksDoneByDayInPercent),
+      day: Math.round(tasksDoneByDayInPercent) || 0,
       month: Math.round(tasksDoneByMonthInPercent),
     },
   ]);
